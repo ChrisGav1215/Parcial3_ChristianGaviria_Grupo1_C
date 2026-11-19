@@ -15,14 +15,6 @@ if (Number.isFinite(consumo) && consumo >= 0 && Number.isInteger(estrato) && est
     let porcentajeSubsidio = 0;
     let porcentajeContribucion = 0;
 
-    let valorConsumo = consumo * TARIFA_KWH;
-    let tarifaBase = valorConsumo + CARGO_FIJO;
-
-    let consumoSubsidiado = Math.min(consumo, CONSUMO_SUBSISTENCIA);
-    let subsidio = consumoSubsidiado * TARIFA_KWH * porcentajeSubsidio;
-    let contribucion = tarifaBase * porcentajeContribucion;
-    let total = tarifaBase - subsidio + contribucion;
-
     if (estrato === 1) {
         porcentajeSubsidio = 0.50;
     } else if (estrato === 2) {
@@ -35,8 +27,15 @@ if (Number.isFinite(consumo) && consumo >= 0 && Number.isInteger(estrato) && est
         porcentajeContribucion = 0.60;
     }
 
-    let estrato = number (prompt ("Estrato invalidado"))     
+    let valorConsumo = consumo * TARIFA_KWH;
+    let tarifaBase = valorConsumo + CARGO_FIJO;
 
+    let consumoSubsidiado = Math.min(consumo, CONSUMO_SUBSISTENCIA);
+    let subsidio = consumoSubsidiado * TARIFA_KWH * porcentajeSubsidio;
+    let contribucion = tarifaBase * porcentajeContribucion;
+    let total = tarifaBase - subsidio + contribucion;
+
+    let estrato = number (prompt ("Estrato invalidado"))   
 
     alert("El consumo de energía eléctrica es: " + consumo + " kWh");
     alert("El valor del subsidio es: " + subsidio);
